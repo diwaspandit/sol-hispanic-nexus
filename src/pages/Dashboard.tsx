@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell } from 'recharts';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -49,6 +48,9 @@ const categoryColors = {
   teal: { light: '#1A7B88', dark: '#2A8B98' } // Added the missing 'teal' property
 };
 
+// Define default chart theme for fallback to prevent undefined errors
+const defaultTheme = { light: '#888888', dark: '#555555' };
+
 const COLORS = ['#6D1A36', '#CB5C29', '#F4B942', '#1A7B88', '#333333', '#999999'];
 
 const Dashboard = () => {
@@ -90,6 +92,11 @@ const Dashboard = () => {
     });
   };
 
+  // Helper function to safely get theme or use default
+  const getTheme = (categoryKey) => {
+    return categoryColors[categoryKey] || defaultTheme;
+  };
+
   return (
     <div className="min-h-screen bg-background pt-16">
       <DashboardHeader />
@@ -125,7 +132,7 @@ const Dashboard = () => {
             value="$24,625" 
             change="+12.5%" 
             trend="up"
-            color={categoryColors.sales.light}
+            color={getTheme('sales').light}
             icon={<LineChartIcon className="h-4 w-4" />}
           />
           <KpiCard 
@@ -133,7 +140,7 @@ const Dashboard = () => {
             value="$9,780" 
             change="-3.2%" 
             trend="down"
-            color={categoryColors.expenses.light}
+            color={getTheme('expenses').light}
             icon={<PieChartIcon className="h-4 w-4" />}
           />
           <KpiCard 
@@ -141,7 +148,7 @@ const Dashboard = () => {
             value="124" 
             change="+18.7%" 
             trend="up"
-            color={categoryColors.customers.light}
+            color={getTheme('customers').light}
             icon={<BarChart3 className="h-4 w-4" />}
           />
           <KpiCard 
@@ -149,7 +156,7 @@ const Dashboard = () => {
             value="$14,845" 
             change="+22.5%" 
             trend="up"
-            color={categoryColors.profits.light}
+            color={getTheme('profits').light}
             icon={<LineChartIcon className="h-4 w-4" />}
           />
         </div>
@@ -171,17 +178,11 @@ const Dashboard = () => {
                   config={{
                     value: {
                       label: "Revenue",
-                      theme: {
-                        light: categoryColors.sales.light,
-                        dark: categoryColors.sales.dark,
-                      },
+                      theme: getTheme('sales'),
                     },
                     growth: {
                       label: "Growth %",
-                      theme: {
-                        light: categoryColors.profits.light,
-                        dark: categoryColors.profits.dark,
-                      },
+                      theme: getTheme('profits'),
                     },
                   }}
                 >
@@ -198,7 +199,7 @@ const Dashboard = () => {
                         type="monotone" 
                         dataKey="value" 
                         name="value" 
-                        stroke={categoryColors.sales.light} 
+                        stroke={getTheme('sales').light} 
                         strokeWidth={3} 
                         dot={{ r: 4 }} 
                         activeDot={{ r: 6 }} 
@@ -208,7 +209,7 @@ const Dashboard = () => {
                         type="monotone" 
                         dataKey="growth" 
                         name="growth" 
-                        stroke={categoryColors.profits.light} 
+                        stroke={getTheme('profits').light} 
                         strokeWidth={2} 
                         dot={{ r: 3 }}
                         activeDot={{ r: 5 }} 
@@ -278,8 +279,8 @@ const Dashboard = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="new" name="New Customers" fill={categoryColors.customers.light} radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="returning" name="Returning Customers" fill={categoryColors.teal.light} radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="new" name="New Customers" fill={getTheme('customers').light} radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="returning" name="Returning Customers" fill={getTheme('teal').light} radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -301,8 +302,8 @@ const Dashboard = () => {
                   <AreaChart data={salesData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <defs>
                       <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor={categoryColors.teal.light} stopOpacity={0.8}/>
-                        <stop offset="95%" stopColor={categoryColors.teal.light} stopOpacity={0.2}/>
+                        <stop offset="5%" stopColor={getTheme('teal').light} stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor={getTheme('teal').light} stopOpacity={0.2}/>
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
@@ -314,7 +315,7 @@ const Dashboard = () => {
                       type="monotone" 
                       dataKey="value" 
                       name="Sales Value"
-                      stroke={categoryColors.teal.dark} 
+                      stroke={getTheme('teal').dark} 
                       fillOpacity={1} 
                       fill="url(#colorSales)" 
                     />
