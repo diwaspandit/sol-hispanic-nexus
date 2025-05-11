@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -17,7 +18,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/dashboard" element={<Index />} /> {/* Will be replaced with actual Dashboard page */}
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tools" element={<Index />} /> {/* Will be replaced with actual Tools page */}
           <Route path="/about" element={<Index />} /> {/* Will be replaced with actual About page */}
           <Route path="*" element={<NotFound />} />

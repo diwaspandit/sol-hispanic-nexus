@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
+import EnhancedHero from '@/components/EnhancedHero';
 import BusinessStage from '@/components/BusinessStage';
 import ChatInterface from '@/components/ChatInterface';
 import Dashboard from '@/components/Dashboard';
@@ -35,7 +35,7 @@ const Index = () => {
       <Navbar />
       
       <main className="flex-grow">
-        <Hero />
+        <EnhancedHero />
         <BusinessStage />
         <Dashboard />
         <ChatInterface />

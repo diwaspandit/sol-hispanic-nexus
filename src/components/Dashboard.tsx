@@ -2,8 +2,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, TrendingUp, Users, FileText, DollarSign } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  
+  const handleViewDashboard = () => {
+    navigate('/dashboard');
+  };
+  
   return (
     <section className="py-20 bg-burgundy/5" id="dashboard">
       <div className="container mx-auto px-4">
@@ -96,7 +103,7 @@ const Dashboard = () => {
               <div className="rounded-lg bg-gray-100 h-60 flex items-center justify-center">
                 <div className="text-center">
                   <p className="text-gray-500 mb-2">Business Growth Trends</p>
-                  <p className="text-sm text-gray-400">(Interactive charts will appear here)</p>
+                  <p className="text-sm text-gray-400">(View full dashboard for interactive charts)</p>
                 </div>
               </div>
             </div>
@@ -107,6 +114,7 @@ const Dashboard = () => {
             <Button 
               size="lg"
               className="bg-burgundy hover:bg-terracotta"
+              onClick={handleViewDashboard}
             >
               <span>View Full Dashboard</span>
               <ArrowRight className="ml-2" size={16} />
