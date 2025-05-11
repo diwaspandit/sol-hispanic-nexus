@@ -6,6 +6,8 @@ import BusinessStage from '@/components/BusinessStage';
 import ChatInterface from '@/components/ChatInterface';
 import Dashboard from '@/components/Dashboard';
 import Footer from '@/components/Footer';
+import ResourceSection from '@/components/ResourceSection';
+import TestimonialSection from '@/components/TestimonialSection';
 
 const Index = () => {
   useEffect(() => {
@@ -37,7 +39,9 @@ const Index = () => {
       <main className="flex-grow">
         <EnhancedHero />
         <BusinessStage />
+        <ResourceSection />
         <Dashboard />
+        <TestimonialSection />
         <ChatInterface />
       </main>
       
