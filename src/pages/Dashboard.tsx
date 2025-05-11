@@ -45,7 +45,8 @@ const categoryColors = {
   sales: { light: '#6D1A36', dark: '#8B2347' },
   expenses: { light: '#CB5C29', dark: '#DB6C39' },
   customers: { light: '#F4B942', dark: '#F4C952' },
-  profits: { light: '#1A7B88', dark: '#2A8B98' }
+  profits: { light: '#1A7B88', dark: '#2A8B98' },
+  teal: { light: '#1A7B88', dark: '#2A8B98' } // Added the missing 'teal' property
 };
 
 const COLORS = ['#6D1A36', '#CB5C29', '#F4B942', '#1A7B88', '#333333', '#999999'];
